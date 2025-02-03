@@ -11,6 +11,13 @@ public class SHA256Helper {
 
             // we want to end up with hexadecimal values not bytes
             StringBuffer hexadecimalString = new StringBuffer();
+
+            for(int i = 0; i<hash.length; ++i){
+                String hexadecimal = Integer.toHexString(0xff & hash[i]);
+                hexadecimalString.append(hexadecimal);
+            }
+            return  hexadecimalString.toString();
+
         }catch(Exception e){
             throw new RuntimeException(e);
         }
