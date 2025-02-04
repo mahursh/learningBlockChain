@@ -1,5 +1,8 @@
 package MerkleTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
 
     /*
@@ -16,6 +19,15 @@ public class App {
 
 
     public static void main(String[] args) {
+
+        List<String> transactions = new ArrayList<>();
+
+        transactions.add("aa");
+        transactions.add("bb");
+        transactions.add("dd");
+
+        MerkleTree tree = new MerkleTree(transactions);
+        System.out.println(tree.getMerkleRoot());
 
     }
 }
