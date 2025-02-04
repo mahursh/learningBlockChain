@@ -1,4 +1,4 @@
-package SimpleBlockchainFromScratch;
+package BlockChain;
 
 public class Constants {
 

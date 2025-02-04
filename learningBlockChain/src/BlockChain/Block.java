@@ -1,4 +1,4 @@
-package SimpleBlockchainFromScratch;
+package BlockChain;
 
 import Hash.SHA256Helper;
 
