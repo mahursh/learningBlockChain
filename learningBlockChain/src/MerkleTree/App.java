@@ -22,6 +22,7 @@ public class App {
 
         List<String> transactions = new ArrayList<>();
 
+        // if we even change the order or value of any transactions, the merkelRoot (hash) will be changed
         transactions.add("aa");
         transactions.add("bb");
         transactions.add("dd");
