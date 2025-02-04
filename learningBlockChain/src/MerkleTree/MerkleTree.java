@@ -41,4 +41,8 @@ public class MerkleTree {
         // recursive method call (tail recursion)
         return construct(updatedList);
     }
+
+    public String getMerkleRoot(){
+        return construct(this.transactions).get(0);
+    }
 }
