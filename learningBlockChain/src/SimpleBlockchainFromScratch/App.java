@@ -22,5 +22,7 @@ public class App {
 
         System.out.println("\n" + "BLOCKCHAIN :\n" + blockChain);
         System.out.println("Miner Reward : " + miner.getReward());
+
+        // a single block is mined after every 10 minutes
     }
 }
