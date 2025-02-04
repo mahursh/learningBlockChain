@@ -17,7 +17,7 @@ public class Block {
         this.previousHash = previousHash;
         this.transaction = transaction;
         this.timestamp = new Date().getTime();
-        SHA256Helper.hash()
+        generateHash();
     }
 
     public String getHash(){
@@ -42,4 +42,22 @@ public class Block {
         this.nonce++;
     }
 
+    public void generateHash(){
+        String dataToHash = Integer.toString(id)
+                +previousHash
+                +Long.toString(timestamp)
+                +Integer.toString(nonce)
+                +transaction.toString();
+        this.hash = SHA256Helper.hash(dataToHash);
+    }
+
+    @Override
+    public String toString() {
+        return "Block{" +
+                "id=" + id +
+                ", hash='" + hash + '\'' +
+                ", previousHash='" + previousHash + '\'' +
+                ", transaction='" + transaction + '\'' +
+                '}';
+    }
 }
