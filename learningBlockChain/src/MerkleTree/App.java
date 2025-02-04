@@ -7,7 +7,7 @@ public class App {
     *   ----> because we can represent all the transactions within a
     *               block by a single hash
     *   ----> this single hash is in the header of the block in the blockchain
-    *               (so it is an memory efficient solution)
+    *               (so it is a memory efficient solution)
     *   ----> this is the merkle root: we recursively keep hashing the leaf nodes
     *               in the tree-like structure
     *
