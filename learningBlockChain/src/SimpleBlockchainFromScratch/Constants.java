@@ -5,7 +5,7 @@ public class Constants {
     private Constants() {
 
     }
-    public static final int DIFFICULTY = 1;
+    public static final int DIFFICULTY = 2;
 
     //This is the reward in the underlying cryptocurrency.
     public static final int REWARD = 10;
