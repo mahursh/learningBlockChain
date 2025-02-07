@@ -1,63 +1,57 @@
 package BlockChain;
 
+import Cryptocurency.CryptographyHelper;
+import Cryptocurency.Transaction;
 import Hash.SHA256Helper;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Block {
     private int id;
     private int nonce;
-    private long timestamp;
+    private long timeStamp;
     private String hash;
     private String previousHash;
-    private String transaction;
+    public List<Transaction> transactions;
 
-    public Block(int id, String previousHash, String transaction){
-        this.id = id;
+    public Block(String previousHash ) {
+        this.transactions = new ArrayList<Transaction>();
         this.previousHash = previousHash;
-        this.transaction = transaction;
-        this.timestamp = new Date().getTime();
+        this.timeStamp = new Date().getTime();
         generateHash();
     }
 
-    public String getHash(){
-        return this.hash;
+    public void generateHash() {
+        String dataToHash = Integer.toString(id)+previousHash+Long.toString(timeStamp)+transactions.toString()+Integer.toString(nonce);
+        String hashValue = SHA256Helper.hash(dataToHash);
+        this.hash = hashValue;
     }
 
-    public Block setHash(String hash){
-        this.hash = hash;
-        return this;
-    }
-
-    public String getPreviousHash(){
-        return this.previousHash;
-    }
-
-    public Block setPreviousHash(String previousHash){
-        this.previousHash = previousHash;
-        return this;
-    }
-
-    public void incrementNonce(){
+    public void incrementNonce() {
         this.nonce++;
     }
 
-    public void generateHash(){
-        String dataToHash = Integer.toString(id)
-                +previousHash
-                +Long.toString(timestamp)
-                +Integer.toString(nonce)
-                +transaction.toString();
-        this.hash = SHA256Helper.hash(dataToHash);
+    public String getHash() {
+        return this.hash;
     }
 
-    @Override
-    public String toString() {
-        return "Block{" +
-                "id=" + id +
-                ", hash='" + hash + '\'' +
-                ", previousHash='" + previousHash + '\'' +
-                ", transaction='" + transaction + '\'' +
-                '}';
+    //check if the given transaction is valid or not
+    public boolean addTransaction(Transaction transaction) {
+
+        if(transaction == null) return false;
+
+        //if the block is the genesis block we do not process
+        if((!previousHash.equals(Constants.GENESIS_PREV_HASH))) {
+            if((!transaction.verifyTransaction())) {
+                System.out.println("Transaction is not valid...");
+                return false;
+            }
+        }
+
+        transactions.add(transaction);
+        System.out.println("Transaction is valid and it's added to the block "+this);
+        return true;
     }
 }
