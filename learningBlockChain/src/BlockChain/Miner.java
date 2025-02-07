@@ -2,12 +2,14 @@ package BlockChain;
 
 public class Miner {
 
+    // every miner gets 6.25 BTC after the mining.
     private double reward;
 
     public void mine(Block block, BlockChain blockChain) {
 
         // it takes some time to find the valid hash
-        // PoW (Prof of work)
+        // this is not energy efficient
+        // this is PoW (Proof of work)
         while (!isGoldenHash(block)) {
             block.incrementNonce();
             block.generateHash();
