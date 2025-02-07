@@ -1,9 +1,7 @@
 package Cryptocurency;
 
-import java.security.KeyPair;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.Signature;
+import java.security.*;
+import java.security.spec.ECGenParameterSpec;
 
 public class CryptographyHelper {
 
@@ -29,7 +27,6 @@ public class CryptographyHelper {
     // checks whether the given transaction belongs to the sender based on the signature
     public static boolean verify(PublicKey publickey, String data, byte[] signature){
         try{
-
             Signature ecdsaSignature = Signature.getInstance("ECDSA", "BC");
             ecdsaSignature.initVerify(publickey);
             ecdsaSignature.update(data.getBytes());
@@ -39,7 +36,19 @@ public class CryptographyHelper {
         }
     }
 
+    // generate public key and private key.
+    // private key: 256 bits long random integer
+    // public key: point on the elliptic curve
+    //(x,y) - both of these values are 256 bits long
     public static KeyPair ellipticCurveCrypto(){
+        try{
+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("ECDSA", "BC");
+            ECGenParameterSpec params = new ECGenParameterSpec("prime256v1");
+            keyPairGenerator.initialize(params);
+            return keyPairGenerator.generateKeyPair();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
