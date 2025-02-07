@@ -1,5 +1,6 @@
 package Cryptocurency;
 
+import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
@@ -36,5 +37,9 @@ public class CryptographyHelper {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static KeyPair ellipticCurveCrypto(){
+
     }
 }
