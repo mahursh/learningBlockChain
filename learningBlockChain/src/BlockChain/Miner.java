@@ -16,7 +16,7 @@ public class Miner {
         System.out.println("Hash is : " + block.getHash());
 
         blockChain.addBlock(block);
-        reward += Constants.REWARD;
+        reward += Constants.MINER_REWARD;
     }
 
     private boolean isGoldenHash(Block block) {
