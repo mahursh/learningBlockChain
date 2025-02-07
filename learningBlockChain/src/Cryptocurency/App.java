@@ -4,6 +4,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.security.KeyPair;
 import java.security.Security;
+import java.util.Base64;
 
 public class App {
     public static void main(String[] args) {
@@ -13,7 +14,9 @@ public class App {
 
         KeyPair keys = CryptographyHelper.ellipticCurveCrypto();
 
-        System.out.println(keys.getPublic().toString());
-        System.out.println(keys.getPrivate().toString());
+//        System.out.println(keys.getPublic().toString());
+//        System.out.println(keys.getPrivate().toString());
+        System.out.println(Base64.getEncoder().encodeToString(keys.getPublic().getEncoded()));
+        System.out.println(Base64.getEncoder().encodeToString(keys.getPrivate().getEncoded()));
     }
 }
