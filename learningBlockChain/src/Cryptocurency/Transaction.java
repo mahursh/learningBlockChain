@@ -28,11 +28,12 @@ public class Transaction {
     public List<TransactionOutput> outputs;
 
     public Transaction(PublicKey sender, PublicKey receiver, double amount, List<TransactionInput> inputs){
-        this.inputs = new ArrayList<TransactionInput>(inputs);
+        this.inputs = new ArrayList<TransactionInput>();
         this.outputs = new ArrayList<TransactionOutput>();
         this.sender = sender;
         this.receiver = receiver;
         this.amount = amount;
+        this.inputs = inputs;
         calculateHash();
     }
 
