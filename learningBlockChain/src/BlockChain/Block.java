@@ -37,12 +37,12 @@ public class Block {
         return this.hash;
     }
 
-    //check if the given transaction is valid or not
+    // check if the given transaction is valid or not
     public boolean addTransaction(Transaction transaction) {
 
         if(transaction == null) return false;
 
-        //if the block is the genesis block we do not process
+        // if the block is the genesis block we do not process
         if((!previousHash.equals(Constants.GENESIS_PREV_HASH))) {
             if((!transaction.verifyTransaction())) {
                 System.out.println("Transaction is not valid...");
@@ -51,7 +51,7 @@ public class Block {
         }
 
         transactions.add(transaction);
-        System.out.println("Transaction is valid and it's added to the block "+this);
+        System.out.println("Transaction is valid and it's added to the block " +this);
         return true;
     }
 }
